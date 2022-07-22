@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      database: hacker-news
+      host: localhost
+      port: 27017
+      authentication-database: admin
