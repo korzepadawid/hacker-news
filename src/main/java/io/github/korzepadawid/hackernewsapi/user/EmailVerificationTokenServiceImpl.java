@@ -26,12 +26,15 @@ public class EmailVerificationTokenServiceImpl implements EmailVerificationToken
             throw new HackerNewsException(HackerNewsError.EMAIL_VERIFICATION_TOKEN_MUST_HAVE_ASSIGNED_USER);
         }
 
-        final EmailVerificationToken emailVerificationToken = new EmailVerificationToken();
+        final EmailVerificationToken emailVerificationToken = createVerificationTokenEntity(user);
+        return emailVerificationTokenRepository.save(emailVerificationToken);
+    }
 
+    private EmailVerificationToken createVerificationTokenEntity(User user) {
+        final EmailVerificationToken emailVerificationToken = new EmailVerificationToken();
         emailVerificationToken.setToken(UUID.randomUUID().toString());
         emailVerificationToken.setUser(user);
         emailVerificationToken.setExpiringAt(LocalDateTime.now().minusHours(TOKEN_EXPIRES_IN_HOURS));
-
-        return emailVerificationTokenRepository.save(emailVerificationToken);
+        return emailVerificationToken;
     }
 }

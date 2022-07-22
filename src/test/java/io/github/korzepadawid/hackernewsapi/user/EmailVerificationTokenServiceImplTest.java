@@ -20,6 +20,8 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class EmailVerificationTokenServiceImplTest {
 
+    public static final String EMAIL_VERIFICATION_TOKEN_STRING = "asdjfhasjkdfh";
+
     @Mock
     private EmailVerificationTokenRepository emailVerificationTokenRepository;
 
@@ -36,7 +38,7 @@ class EmailVerificationTokenServiceImplTest {
     @Test
     void shouldCreateTokenWithExpiringAtInFutureWhenUserProvided() {
         final User user = UserFactoryTest.createUser();
-        final EmailVerificationToken emailVerificationToken = new EmailVerificationToken("asdjfhasjkdfh",
+        final EmailVerificationToken emailVerificationToken = new EmailVerificationToken(EMAIL_VERIFICATION_TOKEN_STRING,
                 UUID.randomUUID().toString(),
                 LocalDateTime.now().plusMinutes(5L),
                 user);

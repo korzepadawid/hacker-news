@@ -1,5 +1,7 @@
 package io.github.korzepadawid.hackernewsapi.common.projection;
 
+import io.github.korzepadawid.hackernewsapi.common.domain.User;
+
 public class UserRead {
 
     private String id;
@@ -10,6 +12,15 @@ public class UserRead {
     private Integer karma;
 
     public UserRead() {
+    }
+
+    public UserRead(final User user) {
+        this.id = user.getId();
+        this.username = user.getId();
+        this.email = user.getEmail();
+        this.verified = user.getVerified();
+        this.karma = user.getKarmaPoints();
+        this.avatarUrl = user.getAvatarStorageKey();
     }
 
     public String getId() {
