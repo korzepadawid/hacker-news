@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
@@ -38,6 +39,7 @@ class UserServiceImplTest {
     void shouldCreateAndReturnNewUserWhenUserHasNotExisted() {
         final User userToSave = UserFactoryTest.createUser();
         when(userRepository.findUserByEmailIgnoreCaseOrUsernameIgnoreCase(userToSave.getEmail(), userToSave.getUsername())).thenReturn(Optional.empty());
+        when(userRepository.save(any(User.class))).thenReturn(userToSave);
 
         final User user = userService.create(userToSave);
 
