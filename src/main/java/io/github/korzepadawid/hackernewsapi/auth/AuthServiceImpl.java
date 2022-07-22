@@ -8,6 +8,8 @@ import io.github.korzepadawid.hackernewsapi.common.projection.UserRead;
 import io.github.korzepadawid.hackernewsapi.common.projection.UserWrite;
 import io.github.korzepadawid.hackernewsapi.user.EmailVerificationTokenService;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 class AuthServiceImpl implements AuthService {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthServiceImpl.class);
     private static final int DEFAULT_KARMA_POINTS = 0;
     private static final boolean DEFAULT_EMAIL_VERIFICATION_STATUS = false;
 
@@ -39,6 +42,7 @@ class AuthServiceImpl implements AuthService {
         final User savedUser = userService.create(userToCreate);
         final EmailVerificationToken verificationToken = emailVerificationTokenService.createTokenForUser(savedUser);
         emailSenderService.sendEmailConfirmationEmail(verificationToken);
+        log.info("New user has been created: {}", userWrite.getUsername());
         return new UserRead(savedUser);
     }
 
@@ -52,7 +56,7 @@ class AuthServiceImpl implements AuthService {
         final User user = new User();
         user.setUsername(userWrite.getUsername());
         user.setEmail(userWrite.getEmail());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(userWrite.getPassword()));
         user.setKarmaPoints(DEFAULT_KARMA_POINTS);
         user.setVerified(DEFAULT_EMAIL_VERIFICATION_STATUS);
         return user;
