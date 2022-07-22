@@ -3,6 +3,7 @@ package io.github.korzepadawid.hackernewsapi.common.exception;
 import org.springframework.http.HttpStatus;
 
 public enum HackerNewsError {
+    EMAIL_VERIFICATION_TOKEN_MUST_HAVE_ASSIGNED_USER("email verification token must have a user assigned", HttpStatus.BAD_REQUEST),
     USER_NOT_FOUND("user not found", HttpStatus.NOT_FOUND),
     USER_ALREADY_EXIST("user already exist", HttpStatus.CONFLICT);
 

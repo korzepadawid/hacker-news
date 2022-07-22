@@ -34,7 +34,7 @@ class EmailVerificationTokenServiceImplTest {
     }
 
     @Test
-    void shouldCreateTokenWhenUserProvided() {
+    void shouldCreateTokenWithExpiringAtInFutureWhenUserProvided() {
         final User user = UserFactoryTest.createUser();
         final EmailVerificationToken emailVerificationToken = new EmailVerificationToken("asdjfhasjkdfh",
                 UUID.randomUUID().toString(),
@@ -46,5 +46,6 @@ class EmailVerificationTokenServiceImplTest {
 
         assertThat(tokenForUser.getToken()).isNotBlank();
         assertThat(tokenForUser.getUser()).isEqualTo(user);
+        assertThat(tokenForUser.getExpiringAt()).isAfter(LocalDateTime.now());
     }
 }
