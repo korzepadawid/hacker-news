@@ -31,6 +31,13 @@ public class EmailVerificationToken {
     public EmailVerificationToken() {
     }
 
+    public EmailVerificationToken(String id, String token, LocalDateTime expiringAt, User user) {
+        this.id = id;
+        this.token = token;
+        this.expiringAt = expiringAt;
+        this.user = user;
+    }
+
     public String getId() {
         return id;
     }

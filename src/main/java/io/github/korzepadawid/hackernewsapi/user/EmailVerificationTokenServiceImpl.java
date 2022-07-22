@@ -1,14 +1,14 @@
 package io.github.korzepadawid.hackernewsapi.user;
 
 import io.github.korzepadawid.hackernewsapi.common.domain.EmailVerificationToken;
+import io.github.korzepadawid.hackernewsapi.common.domain.User;
 import org.springframework.stereotype.Service;
 
-
 @Service
-class EmailVerificationTokenServiceImpl implements EmailVerificationTokenService {
+public class EmailVerificationTokenServiceImpl implements EmailVerificationTokenService {
 
     @Override
-    public EmailVerificationToken create() {
+    public EmailVerificationToken createTokenForUser(User user) {
         return null;
     }
 }
