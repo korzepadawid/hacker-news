@@ -1,5 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.user;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -7,5 +8,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
+    @Test
+    void shouldThrowExceptionWhenUserHasAlreadyExisted() {
+    }
 
+    @Test
+    void shouldCreateAndReturnNewUserWhenUserHasNotExisted() {
+    }
 }
