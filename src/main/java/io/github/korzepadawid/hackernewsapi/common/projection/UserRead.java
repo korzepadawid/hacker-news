@@ -16,7 +16,7 @@ public class UserRead {
 
     public UserRead(final User user) {
         this.id = user.getId();
-        this.username = user.getId();
+        this.username = user.getUsername();
         this.email = user.getEmail();
         this.verified = user.getVerified();
         this.karma = user.getKarmaPoints();
