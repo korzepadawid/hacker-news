@@ -11,7 +11,6 @@ public enum HackerNewsError {
 
     HackerNewsError(final String message,
                     final HttpStatus httpStatus) {
-
         this.httpStatus = httpStatus;
         this.message = message;
     }
