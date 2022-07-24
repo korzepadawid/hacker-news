@@ -26,9 +26,9 @@ public class EmailVerificationToken {
     public EmailVerificationToken() {
     }
 
-    public EmailVerificationToken(final String id,
+    public EmailVerificationToken(final String token,
                                   final User user) {
-        this.id = id;
+        this.token = token;
         this.user = user;
     }
 
