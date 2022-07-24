@@ -4,5 +4,5 @@ import io.github.korzepadawid.hackernewsapi.common.domain.EmailVerificationToken
 
 interface EmailSenderService {
 
-    void sendEmailConfirmationEmail(EmailVerificationToken emailVerificationToken);
+    void sendConfirmationEmail(EmailVerificationToken emailVerificationToken);
 }

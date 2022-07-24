@@ -12,27 +12,27 @@ class ErrorResponse {
         code = hackerNewsError.getHttpStatus().value();
     }
 
-    String getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    void setMessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    String getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    void setStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    Integer getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    void setCode(Integer code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 }

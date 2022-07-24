@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -36,12 +37,13 @@ class AuthServiceImpl implements AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     @Override
     public UserRead signUp(final UserWrite userWrite) {
         final User userToCreate = mapDtoToEntity(userWrite);
         final User savedUser = userService.create(userToCreate);
         final EmailVerificationToken verificationToken = emailVerificationTokenService.createTokenForUser(savedUser);
-        emailSenderService.sendEmailConfirmationEmail(verificationToken);
+        emailSenderService.sendConfirmationEmail(verificationToken);
         log.info("New user has been created: {}", userWrite.getUsername());
         return new UserRead(savedUser);
     }

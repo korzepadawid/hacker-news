@@ -26,7 +26,7 @@ class EmailSenderServiceImpl implements EmailSenderService {
 
     @Async
     @Override
-    public void sendEmailConfirmationEmail(final EmailVerificationToken emailVerificationToken) {
+    public void sendConfirmationEmail(final EmailVerificationToken emailVerificationToken) {
         final MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             prepareMimeMessage(emailVerificationToken, mimeMessage);
