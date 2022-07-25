@@ -9,6 +9,4 @@ interface FileService {
     File convert(MultipartFile multipartFile);
 
     void validate(MultipartFile multipartFile);
-
-    String generateFrom(MultipartFile multipartFile);
 }
