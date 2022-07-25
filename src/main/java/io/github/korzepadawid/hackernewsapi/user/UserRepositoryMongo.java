@@ -11,6 +11,8 @@ import java.util.Optional;
 
 interface UserRepositoryMongo extends UserRepository, MongoRepository<User, String> {
 
+    Optional<User> findUserByEmailIgnoreCase(final @NotBlank @Email @Size(max = 345) String email);
+
     Optional<User> findUserByEmailIgnoreCaseOrUsernameIgnoreCase(@NotBlank @Email @Size(max = 345) String email,
                                                                  @NotBlank @Size(max = 60) String username);
 }
