@@ -3,6 +3,9 @@ package io.github.korzepadawid.hackernewsapi.common.exception;
 import org.springframework.http.HttpStatus;
 
 public enum HackerNewsError {
+    INVALID_FILE_MIME_TYPE("invalid file mime type, please upload png, jpeg or gif", HttpStatus.BAD_REQUEST),
+    INVALID_FILE_SIZE("file size must be between 100KB and 2MB", HttpStatus.BAD_REQUEST),
+    INVALID_FILE("invalid file", HttpStatus.BAD_REQUEST),
     UNAUTHORIZED("access denied", HttpStatus.UNAUTHORIZED),
     USER_ALREADY_VERIFIED("user has been already verified", HttpStatus.CONFLICT),
     INVALID_TOKEN("you've provided invalid token", HttpStatus.NOT_FOUND),
