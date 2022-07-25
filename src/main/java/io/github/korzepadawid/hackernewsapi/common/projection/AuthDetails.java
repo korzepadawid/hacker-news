@@ -7,6 +7,10 @@ public class AuthDetails {
     public AuthDetails() {
     }
 
+    public AuthDetails(final String bearerToken) {
+        this.bearerToken = bearerToken;
+    }
+
     public String getBearerToken() {
         return bearerToken;
     }

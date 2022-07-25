@@ -10,6 +10,11 @@ import io.github.korzepadawid.hackernewsapi.user.EmailVerificationTokenService;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,15 +31,21 @@ class AuthServiceImpl implements AuthService {
     private final EmailVerificationTokenService emailVerificationTokenService;
     private final EmailSenderService emailSenderService;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
     AuthServiceImpl(final UserService userService,
                     final EmailVerificationTokenService emailVerificationTokenService,
                     final EmailSenderService emailSenderService,
-                    final PasswordEncoder passwordEncoder) {
+                    final PasswordEncoder passwordEncoder,
+                    final AuthenticationManager authenticationManager,
+                    final JwtService jwtService) {
         this.userService = userService;
         this.emailVerificationTokenService = emailVerificationTokenService;
         this.emailSenderService = emailSenderService;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
     @Transactional
@@ -48,10 +59,19 @@ class AuthServiceImpl implements AuthService {
         return new UserRead(savedUser);
     }
 
+    @Transactional
     @Override
     public AuthDetails signIn(final AuthCredentials authCredentials) {
-        // TODO: 13.07.2022 signing in
-        return null;
+        final Authentication authentication =
+                authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(
+                                authCredentials.getEmail(), authCredentials.getPassword()));
+
+        final UserDetails authenticationPrincipal = (UserDetails) authentication.getPrincipal();
+        final String jwt = jwtService.generateToken(authenticationPrincipal.getUsername());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return new AuthDetails(jwt);
     }
 
     private User mapDtoToEntity(final UserWrite userWrite) {

@@ -3,6 +3,7 @@ package io.github.korzepadawid.hackernewsapi.common.exception;
 import org.springframework.http.HttpStatus;
 
 public enum HackerNewsError {
+    UNAUTHORIZED("access denied", HttpStatus.UNAUTHORIZED),
     USER_ALREADY_VERIFIED("user has been already verified", HttpStatus.CONFLICT),
     INVALID_TOKEN("you've provided invalid token", HttpStatus.NOT_FOUND),
     EMAIL_VERIFICATION_TOKEN_MUST_HAVE_ASSIGNED_USER("email verification token must have a user assigned", HttpStatus.BAD_REQUEST),

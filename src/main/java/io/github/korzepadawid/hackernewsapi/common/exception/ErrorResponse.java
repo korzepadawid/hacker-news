@@ -1,12 +1,12 @@
 package io.github.korzepadawid.hackernewsapi.common.exception;
 
-class ErrorResponse {
+public class ErrorResponse {
 
     private String message;
     private String status;
     private Integer code;
 
-    ErrorResponse(final HackerNewsError hackerNewsError) {
+    public ErrorResponse(final HackerNewsError hackerNewsError) {
         message = hackerNewsError.getMessage();
         status = hackerNewsError.getHttpStatus().toString();
         code = hackerNewsError.getHttpStatus().value();
