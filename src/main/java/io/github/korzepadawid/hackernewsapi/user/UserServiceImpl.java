@@ -4,6 +4,7 @@ import io.github.korzepadawid.hackernewsapi.common.domain.EmailVerificationToken
 import io.github.korzepadawid.hackernewsapi.common.domain.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsError;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
+import io.github.korzepadawid.hackernewsapi.common.projection.UserRead;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,12 @@ class UserServiceImpl implements UserService {
 
         user.setVerified(true);
         userRepository.save(user);
+    }
+
+    @Override
+    public UserRead findUserByEmail(final String email) {
+        return userRepository.findUserByEmailIgnoreCase(email)
+                .map(UserRead::new)
+                .orElseThrow(() -> new HackerNewsException(HackerNewsError.USER_NOT_FOUND));
     }
 }
