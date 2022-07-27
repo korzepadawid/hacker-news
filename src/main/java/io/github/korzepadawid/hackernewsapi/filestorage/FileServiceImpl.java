@@ -25,6 +25,7 @@ class FileServiceImpl implements FileService {
 
     @Override
     public File convert(final MultipartFile multipartFile) {
+        // TODO: 27.07.2022 file creation
         if (multipartFile == null || multipartFile.isEmpty()) {
             throw new HackerNewsException(HackerNewsError.INVALID_FILE);
         }
