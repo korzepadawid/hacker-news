@@ -26,7 +26,7 @@ class UsersController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/me")
     public UserRead findCurrentUser(final @CurrentUser UserDetails userDetails) {
-        return userService.findUserByEmail(userDetails.getUsername());
+        return userService.findUserByEmailDto(userDetails.getUsername());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

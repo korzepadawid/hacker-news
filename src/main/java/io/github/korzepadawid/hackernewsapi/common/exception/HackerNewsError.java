@@ -3,6 +3,7 @@ package io.github.korzepadawid.hackernewsapi.common.exception;
 import org.springframework.http.HttpStatus;
 
 public enum HackerNewsError {
+    URL_PARSER_ERROR("invalid url", HttpStatus.BAD_REQUEST),
     INVALID_FILE_MIME_TYPE("invalid file mime type, please upload png, jpeg or gif", HttpStatus.BAD_REQUEST),
     INVALID_FILE_SIZE("file size must be between 100KB and 2MB", HttpStatus.BAD_REQUEST),
     INVALID_FILE("invalid file", HttpStatus.BAD_REQUEST),

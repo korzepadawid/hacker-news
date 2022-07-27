@@ -11,7 +11,9 @@ public interface UserService {
 
     void verifyUserWithToken(String verificationToken);
 
-    UserRead findUserByEmail(String email);
+    UserRead findUserByEmailDto(String email);
+
+    User findUserByEmail(String email);
 
     void setAvatarByEmail(String email, MultipartFile multipartFile);
 

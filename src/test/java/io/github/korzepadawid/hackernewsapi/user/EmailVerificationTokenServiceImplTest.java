@@ -3,6 +3,8 @@ package io.github.korzepadawid.hackernewsapi.user;
 import io.github.korzepadawid.hackernewsapi.common.domain.EmailVerificationToken;
 import io.github.korzepadawid.hackernewsapi.common.domain.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
+import io.github.korzepadawid.hackernewsapi.testutil.EmailVerificationTokenFactoryTest;
+import io.github.korzepadawid.hackernewsapi.testutil.UserFactoryTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

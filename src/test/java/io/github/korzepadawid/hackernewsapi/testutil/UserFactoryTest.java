@@ -1,10 +1,10 @@
-package io.github.korzepadawid.hackernewsapi.user;
+package io.github.korzepadawid.hackernewsapi.testutil;
 
 import io.github.korzepadawid.hackernewsapi.common.domain.User;
 
-abstract class UserFactoryTest {
+abstract public class UserFactoryTest {
 
-    static User createUser() {
+    public static User createUser() {
         final User user = new User();
 
         user.setId("12389987329847239847");

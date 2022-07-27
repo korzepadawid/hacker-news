@@ -72,14 +72,20 @@ class UserServiceImpl implements UserService {
 
     @Transactional(readOnly = true)
     @Override
-    public UserRead findUserByEmail(final String email) {
-        return new UserRead(getUserByEmailIgnoreCase(email));
+    public UserRead findUserByEmailDto(final String email) {
+        return new UserRead(findUserByEmail(email));
+    }
+
+    @Override
+    public User findUserByEmail(final String email) {
+        return userRepository.findUserByEmailIgnoreCase(email)
+                .orElseThrow(() -> new HackerNewsException(HackerNewsError.USER_NOT_FOUND));
     }
 
     @Transactional
     @Override
     public void setAvatarByEmail(final String email, final MultipartFile multipartFile) {
-        final User user = getUserByEmailIgnoreCase(email);
+        final User user = findUserByEmail(email);
         final File file = validateAndConvertToFile(multipartFile);
         final String storageKey = useExistingStorageKeyOrGenerateNew(multipartFile, user);
 
@@ -94,7 +100,7 @@ class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void deleteAvatarByEmail(final String email) {
-        final User user = getUserByEmailIgnoreCase(email);
+        final User user = findUserByEmail(email);
         final String storageKey = user.getAvatarStorageKey();
 
         if (storageKey != null) {
@@ -116,10 +122,5 @@ class UserServiceImpl implements UserService {
     private File validateAndConvertToFile(final MultipartFile multipartFile) {
         fileService.validate(multipartFile);
         return fileService.convert(multipartFile);
-    }
-
-    private User getUserByEmailIgnoreCase(final String email) {
-        return userRepository.findUserByEmailIgnoreCase(email)
-                .orElseThrow(() -> new HackerNewsException(HackerNewsError.USER_NOT_FOUND));
     }
 }
