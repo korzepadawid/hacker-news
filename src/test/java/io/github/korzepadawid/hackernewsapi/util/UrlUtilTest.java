@@ -1,6 +1,7 @@
 package io.github.korzepadawid.hackernewsapi.util;
 
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
+import io.github.korzepadawid.hackernewsapi.common.util.UrlUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

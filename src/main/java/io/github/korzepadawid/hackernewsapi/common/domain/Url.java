@@ -1,6 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.common.domain;
 
-import io.github.korzepadawid.hackernewsapi.util.UrlUtil;
+import io.github.korzepadawid.hackernewsapi.common.util.UrlUtil;
 import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.NotBlank;

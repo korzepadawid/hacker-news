@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.util;
+package io.github.korzepadawid.hackernewsapi.common.util;
 
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsError;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
