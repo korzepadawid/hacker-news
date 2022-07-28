@@ -3,6 +3,8 @@ package io.github.korzepadawid.hackernewsapi.common.exception;
 import org.springframework.http.HttpStatus;
 
 public enum HackerNewsError {
+    INSUFFICIENT_PERMISSIONS("insufficient permissions", HttpStatus.UNAUTHORIZED),
+    SUBMISSION_NOT_FOUND("submission not found", HttpStatus.NOT_FOUND),
     URL_PARSER_ERROR("invalid url", HttpStatus.BAD_REQUEST),
     INVALID_FILE_MIME_TYPE("invalid file mime type, please upload png, jpeg or gif", HttpStatus.BAD_REQUEST),
     INVALID_FILE_SIZE("file size must be between 100KB and 2MB", HttpStatus.BAD_REQUEST),

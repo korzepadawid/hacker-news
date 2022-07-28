@@ -1,8 +1,11 @@
 package io.github.korzepadawid.hackernewsapi.submission;
 
+import io.github.korzepadawid.hackernewsapi.comment.CommentRepository;
 import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
 import io.github.korzepadawid.hackernewsapi.common.domain.Url;
 import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsError;
+import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
 import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionPage;
 import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionRead;
 import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionWrite;
@@ -21,11 +24,14 @@ class SubmissionServiceImpl implements SubmissionService {
 
     private final UserService userService;
     private final SubmissionRepository submissionRepository;
+    private final CommentRepository commentRepository;
 
     SubmissionServiceImpl(final UserService userService,
-                          final SubmissionRepository submissionRepository) {
+                          final SubmissionRepository submissionRepository,
+                          final CommentRepository commentRepository) {
         this.userService = userService;
         this.submissionRepository = submissionRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Override
@@ -37,16 +43,26 @@ class SubmissionServiceImpl implements SubmissionService {
     }
 
     @Override
-    public void deleteSubmissionById(final String email, final String id) {
-
-    }
-
-    @Override
     public SubmissionPage findLatestSubmissions(final Integer pageNumber) {
         final int parsedPageNumber = Math.max(0, pageNumber - 1); // I prefer starting from 1 rather than 0
         final PageRequest pageRequest = PageRequest.of(parsedPageNumber, DEFAULT_PAGE_SIZE);
         final Page<Submission> results = submissionRepository.findByOrderByCreatedAtDesc(pageRequest);
-        return getSubmissionPage(pageNumber, results);
+        return getSubmissionPage(parsedPageNumber + 1, results);
+    }
+
+    @Override
+    public void deleteSubmissionById(final String email, final String id) {
+        final User user = userService.findUserByEmail(email);
+        final Submission submission = submissionRepository.findById(id)
+                .orElseThrow(() -> new HackerNewsException(HackerNewsError.SUBMISSION_NOT_FOUND));
+
+        final User submissionAuthor = submission.getAuthor();
+
+        if (isNotAuthorOfSubmission(user, submissionAuthor)) {
+            throw new HackerNewsException(HackerNewsError.INSUFFICIENT_PERMISSIONS);
+        }
+
+        deleteSubmissionWithComments(submission);
     }
 
     @Override
@@ -54,9 +70,21 @@ class SubmissionServiceImpl implements SubmissionService {
         // TODO: 27.07.2022 implement as soon as comments will be implemented
     }
 
+    private void deleteSubmissionWithComments(final Submission submission) {
+        commentRepository.deleteAllBySubmission(submission);
+        submissionRepository.delete(submission);
+    }
+
+    private boolean isNotAuthorOfSubmission(final User user, final User submissionAuthor) {
+        return !user.equals(submissionAuthor);
+    }
+
     private SubmissionPage getSubmissionPage(final Integer pageNumber, final Page<Submission> results) {
         final SubmissionPage submissionPage = new SubmissionPage();
-        final List<SubmissionRead> submissionReads = results.get().map(SubmissionRead::new).collect(Collectors.toList());
+        final List<SubmissionRead> submissionReads = results.getContent()
+                .stream()
+                .map(SubmissionRead::new)
+                .collect(Collectors.toList());
         submissionPage.setCurrentPage(pageNumber);
         submissionPage.setItemsPerPage(DEFAULT_PAGE_SIZE);
         submissionPage.setTotalElements(results.getTotalElements());

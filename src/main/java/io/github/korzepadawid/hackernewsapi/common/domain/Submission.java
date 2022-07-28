@@ -9,7 +9,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Document(collection = "submissions")
 public class Submission {
@@ -33,7 +35,11 @@ public class Submission {
     @CreatedDate
     private LocalDateTime createdAt;
 
+    @DBRef(lazy = true)
+    private Set<Comment> comments;
+
     public Submission() {
+        comments = new HashSet<>();
     }
 
     public String getId() {
@@ -82,6 +88,14 @@ public class Submission {
 
     public void setCreatedAt(final LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(final Set<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override
