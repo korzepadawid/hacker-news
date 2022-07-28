@@ -3,6 +3,7 @@ package io.github.korzepadawid.hackernewsapi.submission;
 import io.github.korzepadawid.hackernewsapi.auth.CurrentUser;
 import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionPage;
 import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionRead;
+import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionWithComments;
 import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionWrite;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,5 +30,18 @@ class SubmissionController {
     @GetMapping
     public SubmissionPage getLatestSubmissions(final @RequestParam(name = "page", defaultValue = "0") String page) {
         return submissionService.findLatestSubmissions(Integer.valueOf(page));
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteSubmissionById(final @CurrentUser UserDetails userDetails,
+                                     final @PathVariable String id) {
+        submissionService.deleteSubmissionById(userDetails.getUsername(), id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}")
+    public SubmissionWithComments findSubmissionByIdWithComments(final @PathVariable String id) {
+        return submissionService.findSubmissionByIdWithComments(id);
     }
 }

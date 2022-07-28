@@ -6,9 +6,7 @@ import io.github.korzepadawid.hackernewsapi.common.domain.Url;
 import io.github.korzepadawid.hackernewsapi.common.domain.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsError;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionPage;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionRead;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionWrite;
+import io.github.korzepadawid.hackernewsapi.common.projection.*;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,9 +51,7 @@ class SubmissionServiceImpl implements SubmissionService {
     @Override
     public void deleteSubmissionById(final String email, final String id) {
         final User user = userService.findUserByEmail(email);
-        final Submission submission = submissionRepository.findById(id)
-                .orElseThrow(() -> new HackerNewsException(HackerNewsError.SUBMISSION_NOT_FOUND));
-
+        final Submission submission = findSubmissionById(id);
         final User submissionAuthor = submission.getAuthor();
 
         if (isNotAuthorOfSubmission(user, submissionAuthor)) {
@@ -66,8 +62,18 @@ class SubmissionServiceImpl implements SubmissionService {
     }
 
     @Override
-    public void findSubmissionByIdWithComments(final String id) {
-        // TODO: 27.07.2022 implement as soon as comments will be implemented
+    public SubmissionWithComments findSubmissionByIdWithComments(final String id) {
+        final Submission submission = findSubmissionById(id);
+        final List<CommentRead> comments = commentRepository.findCommentsBySubmissionOrderByCreatedAtDesc(submission)
+                .stream()
+                .map(CommentRead::new)
+                .collect(Collectors.toList());
+        return new SubmissionWithComments(new SubmissionRead(submission), comments);
+    }
+
+    private Submission findSubmissionById(final String id) {
+        return submissionRepository.findById(id)
+                .orElseThrow(() -> new HackerNewsException(HackerNewsError.SUBMISSION_NOT_FOUND));
     }
 
     private void deleteSubmissionWithComments(final Submission submission) {
