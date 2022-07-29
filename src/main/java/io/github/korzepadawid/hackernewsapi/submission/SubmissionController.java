@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/submissions")
 class SubmissionController {
@@ -22,7 +24,7 @@ class SubmissionController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public SubmissionRead saveSubmission(final @CurrentUser UserDetails userDetails,
-                                         final @RequestBody SubmissionWrite submissionWrite) {
+                                         final @RequestBody @Valid SubmissionWrite submissionWrite) {
         return submissionService.save(userDetails.getUsername(), submissionWrite);
     }
 

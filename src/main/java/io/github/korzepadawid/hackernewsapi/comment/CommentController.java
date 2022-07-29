@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 class CommentController {
 
@@ -20,7 +22,7 @@ class CommentController {
     @PostMapping("/submissions/{submissionId}/comments")
     public CommentRead addCommentToSubmission(final @CurrentUser UserDetails userDetails,
                                               final @PathVariable String submissionId,
-                                              final @RequestBody CommentWrite commentWrite) {
+                                              final @RequestBody @Valid CommentWrite commentWrite) {
         return commentService.addCommentToSubmission(userDetails.getUsername(), submissionId, commentWrite);
     }
 
