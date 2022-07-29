@@ -3,6 +3,7 @@ package io.github.korzepadawid.hackernewsapi.common.exception;
 import org.springframework.http.HttpStatus;
 
 public enum HackerNewsError {
+    COMMENT_NOT_FOUND("comment not found", HttpStatus.NOT_FOUND),
     INSUFFICIENT_PERMISSIONS("insufficient permissions", HttpStatus.UNAUTHORIZED),
     SUBMISSION_NOT_FOUND("submission not found", HttpStatus.NOT_FOUND),
     URL_PARSER_ERROR("invalid url", HttpStatus.BAD_REQUEST),

@@ -91,11 +91,11 @@ public class Comment {
         if (this == o) return true;
         if (!(o instanceof Comment)) return false;
         final Comment comment = (Comment) o;
-        return Objects.equals(text, comment.text) && Objects.equals(voteSum, comment.voteSum) && Objects.equals(createdAt, comment.createdAt);
+        return Objects.equals(text, comment.text) && Objects.equals(voteSum, comment.voteSum) && Objects.equals(author, comment.author) && Objects.equals(submission, comment.submission);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(text, voteSum, createdAt);
+        return Objects.hash(text, voteSum, author, submission);
     }
 }

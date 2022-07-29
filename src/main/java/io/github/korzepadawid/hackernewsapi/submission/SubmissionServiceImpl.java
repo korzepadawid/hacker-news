@@ -71,7 +71,8 @@ class SubmissionServiceImpl implements SubmissionService {
         return new SubmissionWithComments(new SubmissionRead(submission), comments);
     }
 
-    private Submission findSubmissionById(final String id) {
+    @Override
+    public Submission findSubmissionById(final String id) {
         return submissionRepository.findById(id)
                 .orElseThrow(() -> new HackerNewsException(HackerNewsError.SUBMISSION_NOT_FOUND));
     }
