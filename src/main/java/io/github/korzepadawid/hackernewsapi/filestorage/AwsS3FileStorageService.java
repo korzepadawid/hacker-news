@@ -4,11 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.async.AsyncRequestBody;
 import software.amazon.awssdk.services.s3.S3AsyncClient;
 import software.amazon.awssdk.services.s3.model.*;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -28,12 +29,18 @@ class AwsS3FileStorageService implements FileStorageService {
 
     @Override
     @Async
-    public void putFile(final String storageKey, final File file) {
+    public void putFile(final String storageKey, final MultipartFile multipartFile) {
         final PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .key(storageKey)
                 .bucket(awsS3Config.getBucketName())
+                .contentType(multipartFile.getContentType())
                 .build();
-        final AsyncRequestBody asyncRequestBody = AsyncRequestBody.fromFile(file);
+        final AsyncRequestBody asyncRequestBody;
+        try {
+            asyncRequestBody = AsyncRequestBody.fromBytes(multipartFile.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         final CompletableFuture<PutObjectResponse> future = s3AsyncClient.putObject(putObjectRequest, asyncRequestBody);
         future.whenComplete((putObjectResponse, throwable) -> handleResponse(storageKey, putObjectResponse, throwable));
         future.join();

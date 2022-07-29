@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-
 
 @Service
 class UserServiceImpl implements UserService {
@@ -86,11 +84,9 @@ class UserServiceImpl implements UserService {
     @Override
     public void setAvatarByEmail(final String email, final MultipartFile multipartFile) {
         final User user = findUserByEmail(email);
-        final File file = validateAndConvertToFile(multipartFile);
         final String storageKey = useExistingStorageKeyOrGenerateNew(multipartFile, user);
-
-        fileStorageService.putFile(storageKey, file);
-
+        fileService.validate(multipartFile);
+        fileStorageService.putFile(storageKey, multipartFile);
         if (firstAvatarOf(user)) {
             user.setAvatarStorageKey(storageKey);
             userRepository.save(user);
@@ -117,10 +113,5 @@ class UserServiceImpl implements UserService {
 
     private boolean firstAvatarOf(final User user) {
         return user.getAvatarStorageKey() == null;
-    }
-
-    private File validateAndConvertToFile(final MultipartFile multipartFile) {
-        fileService.validate(multipartFile);
-        return fileService.convert(multipartFile);
     }
 }
