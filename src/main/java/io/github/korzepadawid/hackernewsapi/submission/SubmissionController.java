@@ -33,15 +33,15 @@ class SubmissionController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{submissionId}")
     public void deleteSubmissionById(final @CurrentUser UserDetails userDetails,
-                                     final @PathVariable String id) {
-        submissionService.deleteSubmissionById(userDetails.getUsername(), id);
+                                     final @PathVariable String submissionId) {
+        submissionService.deleteSubmissionById(userDetails.getUsername(), submissionId);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id}")
-    public SubmissionWithComments findSubmissionByIdWithComments(final @PathVariable String id) {
-        return submissionService.findSubmissionByIdWithComments(id);
+    @GetMapping("/{submissionId}")
+    public SubmissionWithComments findSubmissionByIdWithComments(final @PathVariable String submissionId) {
+        return submissionService.findSubmissionByIdWithComments(submissionId);
     }
 }

@@ -40,6 +40,7 @@ class CommentServiceImpl implements CommentService {
         final User user = userService.findUserByEmail(email);
         final Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new HackerNewsException(HackerNewsError.COMMENT_NOT_FOUND));
+
         if (isNotOwnerOfComment(user, comment)) {
             throw new HackerNewsException(HackerNewsError.INSUFFICIENT_PERMISSIONS);
         }
