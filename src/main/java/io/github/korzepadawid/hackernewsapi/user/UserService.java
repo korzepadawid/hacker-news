@@ -18,4 +18,6 @@ public interface UserService {
     void setAvatarByEmail(String email, MultipartFile multipartFile);
 
     void deleteAvatarByEmail(String email);
+
+    void updateKarmaPoints(User user, Integer karmaPoints);
 }

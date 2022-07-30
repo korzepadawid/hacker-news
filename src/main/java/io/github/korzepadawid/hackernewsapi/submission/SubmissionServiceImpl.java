@@ -72,6 +72,12 @@ class SubmissionServiceImpl implements SubmissionService {
     }
 
     @Override
+    public void updateVoteSum(final Submission submission, final Integer value) {
+        submission.setVoteSum(value);
+        submissionRepository.save(submission);
+    }
+
+    @Override
     public Submission findSubmissionById(final String id) {
         return submissionRepository.findById(id)
                 .orElseThrow(() -> new HackerNewsException(HackerNewsError.SUBMISSION_NOT_FOUND));

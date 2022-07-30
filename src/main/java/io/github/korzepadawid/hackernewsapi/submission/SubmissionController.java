@@ -1,10 +1,8 @@
 package io.github.korzepadawid.hackernewsapi.submission;
 
 import io.github.korzepadawid.hackernewsapi.auth.CurrentUser;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionPage;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionRead;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionWithComments;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionWrite;
+import io.github.korzepadawid.hackernewsapi.common.projection.*;
+import io.github.korzepadawid.hackernewsapi.submission.vote.VoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +14,12 @@ import javax.validation.Valid;
 class SubmissionController {
 
     private final SubmissionService submissionService;
+    private final VoteService voteService;
 
-    SubmissionController(final SubmissionService submissionService) {
+    SubmissionController(final SubmissionService submissionService,
+                         final VoteService voteService) {
         this.submissionService = submissionService;
+        this.voteService = voteService;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -45,5 +46,13 @@ class SubmissionController {
     @GetMapping("/{submissionId}")
     public SubmissionWithComments findSubmissionByIdWithComments(final @PathVariable String submissionId) {
         return submissionService.findSubmissionByIdWithComments(submissionId);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{submissionId}/votes")
+    public void putVote(final @CurrentUser UserDetails userDetails,
+                        final @PathVariable String submissionId,
+                        final @RequestBody @Valid VoteWrite voteWrite) {
+        voteService.putVote(userDetails.getUsername(), submissionId, voteWrite);
     }
 }

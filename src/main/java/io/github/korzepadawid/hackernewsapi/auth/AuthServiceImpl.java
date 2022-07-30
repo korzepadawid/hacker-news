@@ -17,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -48,7 +47,6 @@ class AuthServiceImpl implements AuthService {
         this.jwtService = jwtService;
     }
 
-    @Transactional
     @Override
     public UserRead signUp(final UserWrite userWrite) {
         final User userToCreate = mapDtoToEntity(userWrite);
@@ -59,7 +57,6 @@ class AuthServiceImpl implements AuthService {
         return new UserRead(savedUser);
     }
 
-    @Transactional
     @Override
     public AuthDetails signIn(final AuthCredentials authCredentials) {
         final Authentication authentication =

@@ -38,8 +38,20 @@ public class Submission {
     @DBRef(lazy = true)
     private Set<Comment> comments;
 
+    @DBRef(lazy = true)
+    private Set<Vote> votes;
+
     public Submission() {
         comments = new HashSet<>();
+        votes = new HashSet<>();
+    }
+
+    public Set<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(final Set<Vote> votes) {
+        this.votes = votes;
     }
 
     public String getId() {

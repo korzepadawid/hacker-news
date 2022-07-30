@@ -17,4 +17,6 @@ public interface SubmissionService {
     SubmissionPage findLatestSubmissions(Integer pageNumber);
 
     SubmissionWithComments findSubmissionByIdWithComments(String id);
+
+    void updateVoteSum(Submission submission, Integer value);
 }

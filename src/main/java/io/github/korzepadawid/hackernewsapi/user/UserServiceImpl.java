@@ -51,7 +51,6 @@ class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    @Transactional
     @Override
     public void verifyUserWithToken(final String verificationToken) {
         final EmailVerificationToken emailVerificationToken = emailVerificationTokenRepository.findByToken(verificationToken)
@@ -68,7 +67,6 @@ class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public UserRead findUserByEmailDto(final String email) {
         return new UserRead(findUserByEmail(email));
@@ -80,7 +78,6 @@ class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new HackerNewsException(HackerNewsError.USER_NOT_FOUND));
     }
 
-    @Transactional
     @Override
     public void setAvatarByEmail(final String email, final MultipartFile multipartFile) {
         final User user = findUserByEmail(email);
@@ -105,6 +102,12 @@ class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
 
+    }
+
+    @Override
+    public void updateKarmaPoints(final User user, final Integer karmaPoints) {
+        user.setKarmaPoints(karmaPoints);
+        userRepository.save(user);
     }
 
     private String useExistingStorageKeyOrGenerateNew(final MultipartFile multipartFile, final User user) {
