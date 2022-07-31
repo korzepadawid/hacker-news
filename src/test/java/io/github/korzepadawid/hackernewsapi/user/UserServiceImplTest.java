@@ -36,7 +36,7 @@ class UserServiceImplTest {
 
     @Test
     void shouldThrowExceptionWhenUserHasAlreadyExisted() {
-        final User userToSave = UserFactoryTest.createUser();
+        final User userToSave = UserFactoryTest.create();
         when(userRepository.findUserByEmailIgnoreCaseOrUsernameIgnoreCase(userToSave.getEmail(), userToSave.getUsername())).thenReturn(Optional.of(userToSave));
 
         final Throwable throwable = catchThrowable(() -> userService.create(userToSave));
@@ -46,7 +46,7 @@ class UserServiceImplTest {
 
     @Test
     void shouldCreateAndReturnNewUserWhenUserHasNotExisted() {
-        final User userToSave = UserFactoryTest.createUser();
+        final User userToSave = UserFactoryTest.create();
         when(userRepository.findUserByEmailIgnoreCaseOrUsernameIgnoreCase(userToSave.getEmail(), userToSave.getUsername())).thenReturn(Optional.empty());
         when(userRepository.save(any(User.class))).thenReturn(userToSave);
 
@@ -68,7 +68,7 @@ class UserServiceImplTest {
 
     @Test
     void shouldThrowExceptionWhenTokenValidAndUserVerified() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         user.setVerified(true);
         final EmailVerificationToken verificationToken = EmailVerificationTokenFactoryTest.createToken(user);
         when(emailVerificationTokenRepository.findByToken(verificationToken.getToken())).thenReturn(Optional.of(verificationToken));
@@ -80,7 +80,7 @@ class UserServiceImplTest {
 
     @Test
     void shouldMakeUserVerifiedWhenTokenValidAndUserNonVerified() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         user.setVerified(false);
         final EmailVerificationToken verificationToken = EmailVerificationTokenFactoryTest.createToken(user);
         when(emailVerificationTokenRepository.findByToken(verificationToken.getToken())).thenReturn(Optional.of(verificationToken));

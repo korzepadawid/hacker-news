@@ -34,7 +34,7 @@ class EmailVerificationTokenServiceImplTest {
 
     @Test
     void shouldCreateUnexpiredTokenWhenUserProvided() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         final EmailVerificationToken emailVerificationToken = EmailVerificationTokenFactoryTest.createToken(user);
         when(emailVerificationTokenRepository.save(any(EmailVerificationToken.class))).thenReturn(emailVerificationToken);
 

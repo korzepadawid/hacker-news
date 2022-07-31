@@ -11,7 +11,7 @@ abstract public class CommentFactoryTest {
         final Comment comment = new Comment();
         comment.setId(UUID.randomUUID().toString());
         comment.setCreatedAt(LocalDateTime.now().minusDays(10));
-        comment.setAuthor(UserFactoryTest.createUser());
+        comment.setAuthor(UserFactoryTest.create());
         comment.setSubmission(SubmissionFactoryTest.create());
         comment.setText("jhgsafjsdhgfhasgjf");
         comment.setVoteSum(324);

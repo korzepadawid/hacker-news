@@ -84,7 +84,7 @@ class SubmissionServiceImplTest {
 
     @Test
     void shouldThrowExceptionWhenSubmissionNotFound() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         when(userService.findUserByEmail(any(String.class))).thenReturn(user);
         when(submissionRepository.findById(any(String.class))).thenReturn(Optional.empty());
 
@@ -95,8 +95,8 @@ class SubmissionServiceImplTest {
 
     @Test
     void shouldThrowExceptionWhenUserIsNotAuthorOfSubmission() {
-        final User owner = UserFactoryTest.createUser();
-        final User anotherUser = UserFactoryTest.createUser();
+        final User owner = UserFactoryTest.create();
+        final User anotherUser = UserFactoryTest.create();
         anotherUser.setEmail(DIFFERENT_EMAIL);
         final Submission submission = SubmissionFactoryTest.create();
         submission.setAuthor(owner);
@@ -110,7 +110,7 @@ class SubmissionServiceImplTest {
 
     @Test
     void shouldDeleteSubmissionAndItsCommentsWhenUserIsAuthorOfSubmission() {
-        final User owner = UserFactoryTest.createUser();
+        final User owner = UserFactoryTest.create();
         final Submission submission = SubmissionFactoryTest.create();
         submission.setAuthor(owner);
         when(userService.findUserByEmail(any(String.class))).thenReturn(owner);

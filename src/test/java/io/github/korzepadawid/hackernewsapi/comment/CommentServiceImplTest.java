@@ -46,7 +46,7 @@ class CommentServiceImplTest {
 
     @Test
     void shouldCreateCommentWhenSubmissionAndUserExist() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         final Submission submission = SubmissionFactoryTest.create();
         final CommentWrite commentWrite = new CommentWrite(COMMENT_TEXT);
         final Comment comment = CommentFactoryTest.create();
@@ -67,7 +67,7 @@ class CommentServiceImplTest {
 
     @Test
     void shouldThrowExceptionWhenCommentNotFound() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         when(userService.findUserByEmail(user.getEmail())).thenReturn(user);
         when(commentRepository.findById(anyString())).thenReturn(Optional.empty());
 
@@ -78,7 +78,7 @@ class CommentServiceImplTest {
 
     @Test
     void shouldThrowExceptionWhenUserIsNotOwnerOfComment() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         user.setEmail(RANDOM_MAIL);
         final Comment comment = CommentFactoryTest.create();
         when(userService.findUserByEmail(user.getEmail())).thenReturn(user);
@@ -91,7 +91,7 @@ class CommentServiceImplTest {
 
     @Test
     void shouldDeleteCommentWhenUserIsOwnerOfComment() {
-        final User user = UserFactoryTest.createUser();
+        final User user = UserFactoryTest.create();
         final Comment comment = CommentFactoryTest.create();
         comment.setAuthor(user);
         when(userService.findUserByEmail(user.getEmail())).thenReturn(user);

@@ -60,8 +60,7 @@ class VoteServiceImpl implements VoteService {
 
     private void createNewVote(final VoteWrite voteWrite, final User user, final Submission submission, final User submissionAuthor) {
         final Vote newVote = mapDtoToEntity(voteWrite, user, submission);
-        final int updatedVoteSum = calculateNewPointsValue(submission.getVoteSum(),
-                voteWrite.getVoteType());
+        final int updatedVoteSum = calculateNewPointsValue(submission.getVoteSum(), voteWrite.getVoteType());
         final int updatedKarmaPoints = calculateNewPointsValue(submissionAuthor.getKarmaPoints(), voteWrite.getVoteType());
         submissionService.updateVoteSum(submission, updatedVoteSum);
         userService.updateKarmaPoints(submissionAuthor, updatedKarmaPoints);
