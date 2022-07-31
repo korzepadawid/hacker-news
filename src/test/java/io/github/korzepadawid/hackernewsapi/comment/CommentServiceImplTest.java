@@ -27,7 +27,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class CommentServiceImplTest {
 
-    private static final int EXPECTED = 0;
     private static final String COMMENT_TEXT = "commenting a submission";
     private static final String RANDOM_MAIL = "cool@mailer.com";
     private static final String RANDOM_ID = "jhadfjgsajdfasdf";
@@ -53,7 +52,6 @@ class CommentServiceImplTest {
         comment.setText(commentWrite.getText());
         comment.setSubmission(submission);
         comment.setAuthor(user);
-        comment.setVoteSum(0);
         when(userService.findUserByEmail(user.getEmail())).thenReturn(user);
         when(submissionService.findSubmissionById(submission.getId())).thenReturn(submission);
         when(commentRepository.save(any(Comment.class))).thenReturn(comment);
@@ -62,7 +60,6 @@ class CommentServiceImplTest {
 
         assertThat(commentRead.getAuthor().getEmail()).isEqualTo(user.getEmail());
         assertThat(commentRead.getText()).isEqualTo(commentWrite.getText());
-        assertThat(commentRead.getVoteSum()).isEqualTo(EXPECTED);
     }
 
     @Test

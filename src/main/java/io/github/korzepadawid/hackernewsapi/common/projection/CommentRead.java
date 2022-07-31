@@ -8,7 +8,6 @@ public class CommentRead {
 
     private String id;
     private String text;
-    private Integer voteSum;
     private LocalDateTime createdAt;
     private UserRead author;
 
@@ -18,7 +17,6 @@ public class CommentRead {
     public CommentRead(final Comment comment) {
         this.id = comment.getId();
         this.text = comment.getText();
-        this.voteSum = comment.getVoteSum();
         this.createdAt = comment.getCreatedAt();
         this.author = new UserRead(comment.getAuthor());
     }
@@ -37,14 +35,6 @@ public class CommentRead {
 
     public void setText(final String text) {
         this.text = text;
-    }
-
-    public Integer getVoteSum() {
-        return voteSum;
-    }
-
-    public void setVoteSum(final Integer voteSum) {
-        this.voteSum = voteSum;
     }
 
     public LocalDateTime getCreatedAt() {

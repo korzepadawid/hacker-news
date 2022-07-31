@@ -14,7 +14,6 @@ abstract public class CommentFactoryTest {
         comment.setAuthor(UserFactoryTest.create());
         comment.setSubmission(SubmissionFactoryTest.create());
         comment.setText("jhgsafjsdhgfhasgjf");
-        comment.setVoteSum(324);
         return comment;
     }
 }

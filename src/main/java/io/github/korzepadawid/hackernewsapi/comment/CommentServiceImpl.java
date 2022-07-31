@@ -56,7 +56,6 @@ class CommentServiceImpl implements CommentService {
         final Comment comment = new Comment();
         comment.setSubmission(submission);
         comment.setAuthor(user);
-        comment.setVoteSum(0);
         comment.setText(commentWrite.getText());
         return comment;
     }

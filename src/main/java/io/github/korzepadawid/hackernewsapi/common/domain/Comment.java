@@ -21,9 +21,6 @@ public class Comment {
     @Size(max = 250)
     private String text;
 
-    @NotNull
-    private Integer voteSum;
-
     @CreatedDate
     private LocalDateTime createdAt;
 
@@ -52,14 +49,6 @@ public class Comment {
 
     public void setText(final String text) {
         this.text = text;
-    }
-
-    public Integer getVoteSum() {
-        return voteSum;
-    }
-
-    public void setVoteSum(final Integer voteSum) {
-        this.voteSum = voteSum;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -91,11 +80,11 @@ public class Comment {
         if (this == o) return true;
         if (!(o instanceof Comment)) return false;
         final Comment comment = (Comment) o;
-        return Objects.equals(text, comment.text) && Objects.equals(voteSum, comment.voteSum) && Objects.equals(author, comment.author) && Objects.equals(submission, comment.submission);
+        return Objects.equals(text, comment.text) && Objects.equals(createdAt, comment.createdAt) && Objects.equals(author, comment.author) && Objects.equals(submission, comment.submission);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(text, voteSum, author, submission);
+        return Objects.hash(text, createdAt, author, submission);
     }
 }
