@@ -11,7 +11,6 @@ import software.amazon.awssdk.services.s3.S3AsyncClient;
 public class AwsS3Config {
 
     private String region;
-    private String cdnUrl;
     private String bucketName;
 
     @Bean
@@ -27,14 +26,6 @@ public class AwsS3Config {
 
     void setRegion(final String region) {
         this.region = region;
-    }
-
-    public String getCdnUrl() {
-        return cdnUrl;
-    }
-
-    void setCdnUrl(final String cdnUrl) {
-        this.cdnUrl = cdnUrl;
     }
 
     String getBucketName() {
