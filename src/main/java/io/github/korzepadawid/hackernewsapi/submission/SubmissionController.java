@@ -3,6 +3,7 @@ package io.github.korzepadawid.hackernewsapi.submission;
 import io.github.korzepadawid.hackernewsapi.auth.CurrentUser;
 import io.github.korzepadawid.hackernewsapi.common.projection.*;
 import io.github.korzepadawid.hackernewsapi.submission.vote.VoteService;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ class SubmissionController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public SubmissionRead saveSubmission(final @CurrentUser UserDetails userDetails,
+    public SubmissionRead saveSubmission(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
                                          final @RequestBody @Valid SubmissionWrite submissionWrite) {
         return submissionService.save(userDetails.getUsername(), submissionWrite);
     }
@@ -37,7 +38,7 @@ class SubmissionController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{submissionId}")
-    public void deleteSubmissionById(final @CurrentUser UserDetails userDetails,
+    public void deleteSubmissionById(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
                                      final @PathVariable String submissionId) {
         submissionService.deleteSubmissionById(userDetails.getUsername(), submissionId);
     }
@@ -50,7 +51,7 @@ class SubmissionController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{submissionId}/votes")
-    public void putVote(final @CurrentUser UserDetails userDetails,
+    public void putVote(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
                         final @PathVariable String submissionId,
                         final @RequestBody @Valid VoteWrite voteWrite) {
         voteService.putVote(userDetails.getUsername(), submissionId, voteWrite);
@@ -58,7 +59,7 @@ class SubmissionController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{submissionId}/votes")
-    public void deleteVote(final @CurrentUser UserDetails userDetails,
+    public void deleteVote(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
                            final @PathVariable String submissionId) {
         voteService.deleteVote(userDetails.getUsername(), submissionId);
     }
