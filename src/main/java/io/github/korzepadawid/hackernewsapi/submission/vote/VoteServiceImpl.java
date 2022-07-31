@@ -58,6 +58,29 @@ class VoteServiceImpl implements VoteService {
         }
     }
 
+    @Override
+    public void deleteVote(final String email, final String submissionId) {
+        final User user = userService.findUserByEmail(email);
+        final Submission submission = submissionService.findSubmissionById(submissionId);
+        final Vote vote = voteRepository.findVoteByAuthorAndSubmission(user, submission)
+                .orElseThrow(() -> new HackerNewsException(HackerNewsError.VOTE_NOT_FOUND));
+
+        if (isNotVoteOwner(user, vote)) {
+            throw new HackerNewsException(HackerNewsError.INSUFFICIENT_PERMISSIONS);
+        }
+
+        final int opposite = vote.getVoteType().getValue() * (-1);
+        final User submissionAuthor = submission.getAuthor();
+
+        userService.updateKarmaPoints(submissionAuthor, submissionAuthor.getKarmaPoints() + opposite);
+        submissionService.updateVoteSum(submission, submission.getVoteSum() + opposite);
+        voteRepository.delete(vote);
+    }
+
+    private boolean isNotVoteOwner(final User user, final Vote vote) {
+        return !(vote.getAuthor().equals(user));
+    }
+
     private void createNewVote(final VoteWrite voteWrite, final User user, final Submission submission, final User submissionAuthor) {
         final Vote newVote = mapDtoToEntity(voteWrite, user, submission);
         final int updatedVoteSum = calculateNewPointsValue(submission.getVoteSum(), voteWrite.getVoteType());

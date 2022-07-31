@@ -11,4 +11,6 @@ interface VoteRepository {
     Vote save(Vote vote);
 
     Optional<Vote> findVoteByAuthorAndSubmission(final User author, final Submission submission);
+
+    void delete(Vote vote);
 }

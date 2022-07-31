@@ -55,4 +55,11 @@ class SubmissionController {
                         final @RequestBody @Valid VoteWrite voteWrite) {
         voteService.putVote(userDetails.getUsername(), submissionId, voteWrite);
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{submissionId}/votes")
+    public void deleteVote(final @CurrentUser UserDetails userDetails,
+                           final @PathVariable String submissionId) {
+        voteService.deleteVote(userDetails.getUsername(), submissionId);
+    }
 }

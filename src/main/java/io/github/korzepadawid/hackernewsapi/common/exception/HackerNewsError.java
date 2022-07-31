@@ -3,6 +3,7 @@ package io.github.korzepadawid.hackernewsapi.common.exception;
 import org.springframework.http.HttpStatus;
 
 public enum HackerNewsError {
+    VOTE_NOT_FOUND("vote not found", HttpStatus.NOT_FOUND),
     VOTE_FOR_OWN_SUBMISSION("you can't vote for your own submission", HttpStatus.CONFLICT),
     NOT_ENOUGH_KARMA_TO_VOTE("not enough karma to vote", HttpStatus.BAD_REQUEST),
     COMMENT_NOT_FOUND("comment not found", HttpStatus.NOT_FOUND),

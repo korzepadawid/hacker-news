@@ -144,4 +144,53 @@ class VoteServiceImplTest {
         verify(voteRepository).save(any(Vote.class));
         assertThat(vote.getVoteType()).isEqualTo(newVoteType);
     }
+
+    @Test
+    void shouldThrowExceptionWhenVoteDoesNotExist() {
+        final User user = UserFactoryTest.create();
+        final Submission submission = SubmissionFactoryTest.create();
+        when(userService.findUserByEmail(user.getEmail())).thenReturn(user);
+        when(submissionService.findSubmissionById(submission.getId())).thenReturn(submission);
+        when(voteRepository.findVoteByAuthorAndSubmission(user, submission)).thenReturn(Optional.empty());
+
+        final Throwable throwable = catchThrowable(() -> voteService.deleteVote(user.getEmail(), submission.getId()));
+
+        assertThat(throwable).isInstanceOf(HackerNewsException.class);
+    }
+
+    @Test
+    void shouldRemoveVoteAndUpdatePointsAndKarmaWhenDownVote() {
+        final User user = UserFactoryTest.create();
+        final User submissionAuthor = UserFactoryTest.create();
+        final Submission submission = SubmissionFactoryTest.createWithAuthor(submissionAuthor);
+        final VoteType voteType = VoteType.DOWN;
+        final Vote vote = VoteFactoryTest.create(submission, user, voteType);
+        when(userService.findUserByEmail(user.getEmail())).thenReturn(user);
+        when(submissionService.findSubmissionById(submission.getId())).thenReturn(submission);
+        when(voteRepository.findVoteByAuthorAndSubmission(user, submission)).thenReturn(Optional.of(vote));
+
+        voteService.deleteVote(user.getEmail(), submission.getId());
+
+        verify(userService).updateKarmaPoints(submissionAuthor, submissionAuthor.getKarmaPoints() + 1);
+        verify(submissionService).updateVoteSum(submission, submission.getVoteSum() + 1);
+        verify(voteRepository).delete(any(Vote.class));
+    }
+
+    @Test
+    void shouldRemoveVoteAndUpdatePointsAndKarmaWhenUpVote() {
+        final User user = UserFactoryTest.create();
+        final User submissionAuthor = UserFactoryTest.create();
+        final Submission submission = SubmissionFactoryTest.createWithAuthor(submissionAuthor);
+        final VoteType voteType = VoteType.UP;
+        final Vote vote = VoteFactoryTest.create(submission, user, voteType);
+        when(userService.findUserByEmail(user.getEmail())).thenReturn(user);
+        when(submissionService.findSubmissionById(submission.getId())).thenReturn(submission);
+        when(voteRepository.findVoteByAuthorAndSubmission(user, submission)).thenReturn(Optional.of(vote));
+
+        voteService.deleteVote(user.getEmail(), submission.getId());
+
+        verify(userService).updateKarmaPoints(submissionAuthor, submissionAuthor.getKarmaPoints() - 1);
+        verify(submissionService).updateVoteSum(submission, submission.getVoteSum() - 1);
+        verify(voteRepository).delete(any(Vote.class));
+    }
 }
