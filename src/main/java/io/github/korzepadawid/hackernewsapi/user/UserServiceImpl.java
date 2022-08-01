@@ -11,7 +11,6 @@ import io.github.korzepadawid.hackernewsapi.filestorage.StorageKeyGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -90,7 +89,6 @@ class UserServiceImpl implements UserService {
         }
     }
 
-    @Transactional
     @Override
     public void deleteAvatarByEmail(final String email) {
         final User user = findUserByEmail(email);

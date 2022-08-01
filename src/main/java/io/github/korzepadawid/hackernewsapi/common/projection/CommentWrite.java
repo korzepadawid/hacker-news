@@ -1,7 +1,12 @@
 package io.github.korzepadawid.hackernewsapi.common.projection;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class CommentWrite {
 
+    @NotBlank
+    @Size(max = 250)
     private String text;
 
     public CommentWrite() {

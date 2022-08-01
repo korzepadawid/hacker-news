@@ -1,8 +1,13 @@
 package io.github.korzepadawid.hackernewsapi.common.projection;
 
+import javax.validation.constraints.NotNull;
+
 public class AuthCredentials {
 
+    @NotNull
     private String email;
+
+    @NotNull
     private String password;
 
     public AuthCredentials() {

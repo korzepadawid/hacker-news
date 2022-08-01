@@ -46,7 +46,7 @@ class EmailSenderServiceImpl implements EmailSenderService {
     }
 
     private String getMessageText(final EmailVerificationToken emailVerificationToken) {
-        return String.format("Hi %s if you want to verify your email address, please click link below\n" +
+        return String.format("Hi %s, if you want to verify your email address, please click link below\n" +
                 "http://localhost:8080/users/verify/%s", emailVerificationToken.getUser().getUsername(), emailVerificationToken.getToken());
     }
 }

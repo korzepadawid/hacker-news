@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.comment;
+package io.github.korzepadawid.hackernewsapi.submission.comment;
 
 import io.github.korzepadawid.hackernewsapi.common.domain.Comment;
 import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
@@ -10,6 +10,7 @@ import io.github.korzepadawid.hackernewsapi.common.projection.CommentWrite;
 import io.github.korzepadawid.hackernewsapi.submission.SubmissionService;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 class CommentServiceImpl implements CommentService {
@@ -37,6 +38,22 @@ class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteCommentById(final String email, final String commentId) {
+        final Comment comment = findCommentAndValidate(email, commentId);
+        commentRepository.delete(comment);
+    }
+
+    @Override
+    public void updateCommentById(final String email, final String commentId, final CommentWrite commentWrite) {
+        final Comment comment = findCommentAndValidate(email, commentId);
+
+        if (StringUtils.hasText(commentWrite.getText())) {
+            comment.setText(commentWrite.getText());
+        }
+
+        commentRepository.save(comment);
+    }
+
+    private Comment findCommentAndValidate(final String email, final String commentId) {
         final User user = userService.findUserByEmail(email);
         final Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new HackerNewsException(HackerNewsError.COMMENT_NOT_FOUND));
@@ -44,8 +61,7 @@ class CommentServiceImpl implements CommentService {
         if (isNotOwnerOfComment(user, comment)) {
             throw new HackerNewsException(HackerNewsError.INSUFFICIENT_PERMISSIONS);
         }
-
-        commentRepository.delete(comment);
+        return comment;
     }
 
     private boolean isNotOwnerOfComment(final User user, final Comment comment) {

@@ -7,6 +7,8 @@ import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException
 import io.github.korzepadawid.hackernewsapi.common.projection.CommentRead;
 import io.github.korzepadawid.hackernewsapi.common.projection.CommentWrite;
 import io.github.korzepadawid.hackernewsapi.submission.SubmissionService;
+import io.github.korzepadawid.hackernewsapi.submission.comment.CommentRepository;
+import io.github.korzepadawid.hackernewsapi.submission.comment.CommentServiceImpl;
 import io.github.korzepadawid.hackernewsapi.testutil.CommentFactoryTest;
 import io.github.korzepadawid.hackernewsapi.testutil.SubmissionFactoryTest;
 import io.github.korzepadawid.hackernewsapi.testutil.UserFactoryTest;

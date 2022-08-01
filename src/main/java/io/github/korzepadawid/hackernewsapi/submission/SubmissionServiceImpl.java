@@ -1,6 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.submission;
 
-import io.github.korzepadawid.hackernewsapi.comment.CommentRepository;
+import io.github.korzepadawid.hackernewsapi.submission.comment.CommentRepository;
 import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
 import io.github.korzepadawid.hackernewsapi.common.domain.Url;
 import io.github.korzepadawid.hackernewsapi.common.domain.User;

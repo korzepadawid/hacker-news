@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.comment;
+package io.github.korzepadawid.hackernewsapi.submission.comment;
 
 import io.github.korzepadawid.hackernewsapi.auth.CurrentUser;
 import io.github.korzepadawid.hackernewsapi.common.projection.CommentRead;
@@ -32,5 +32,13 @@ class CommentController {
     public void deleteCommentById(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
                                   final @PathVariable String commentId) {
         commentService.deleteCommentById(userDetails.getUsername(), commentId);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/comments/{commentId}")
+    public void updateCommentById(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
+                                  final @PathVariable String commentId,
+                                  final @RequestBody CommentWrite commentWrite) {
+        commentService.updateCommentById(userDetails.getUsername(), commentId, commentWrite);
     }
 }
