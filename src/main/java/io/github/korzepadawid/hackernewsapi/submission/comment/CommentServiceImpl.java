@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
+public
 class CommentServiceImpl implements CommentService {
 
     private final UserService userService;

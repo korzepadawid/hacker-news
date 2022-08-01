@@ -38,7 +38,7 @@ class CommentController {
     @PatchMapping("/comments/{commentId}")
     public void updateCommentById(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
                                   final @PathVariable String commentId,
-                                  final @RequestBody CommentWrite commentWrite) {
+                                  final @RequestBody @Valid CommentWrite commentWrite) {
         commentService.updateCommentById(userDetails.getUsername(), commentId, commentWrite);
     }
 }
