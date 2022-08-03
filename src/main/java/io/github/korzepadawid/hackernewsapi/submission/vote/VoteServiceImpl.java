@@ -16,12 +16,11 @@ import java.util.Optional;
 @Service
 class VoteServiceImpl implements VoteService {
 
+    public static final int REQUIRED_KARMA_POINTS_TO_VOTE = 10;
+    public static final int DIFFERENCE_IN_ABS_BETWEEN_SMALLEST_AND_LARGEST_AMOUNT_OF_VOTES_AT_ONCE = 2;
     private final UserService userService;
     private final SubmissionService submissionService;
     private final VoteRepository voteRepository;
-
-    public static final int REQUIRED_KARMA_POINTS_TO_VOTE = 10;
-    public static final int DIFFERENCE_IN_ABS_BETWEEN_SMALLEST_AND_LARGEST_AMOUNT_OF_VOTES_AT_ONCE = 2;
 
     VoteServiceImpl(final UserService userService,
                     final SubmissionService submissionService,

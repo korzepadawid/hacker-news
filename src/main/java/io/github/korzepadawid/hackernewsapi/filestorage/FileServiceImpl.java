@@ -14,8 +14,6 @@ import java.util.List;
 public
 class FileServiceImpl implements FileService {
 
-    private final Logger log = LoggerFactory.getLogger(FileServiceImpl.class);
-
     public static final long MIN_FILE_SIZE_IN_BYTES = 51_200L; // 50 KB
     public static final long MAX_FILE_SIZE_IN_BYTES = 1_572_864L; // 1.5 MB
     private static final List<String> AVAILABLE_FILE_MIME_TYPES = List.of(
@@ -23,6 +21,7 @@ class FileServiceImpl implements FileService {
             MimeTypeUtils.IMAGE_PNG_VALUE,
             MimeTypeUtils.IMAGE_JPEG_VALUE
     );
+    private final Logger log = LoggerFactory.getLogger(FileServiceImpl.class);
 
     @Override
     public void validate(final MultipartFile multipartFile) {

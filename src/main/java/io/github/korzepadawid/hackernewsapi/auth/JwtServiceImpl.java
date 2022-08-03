@@ -15,12 +15,11 @@ import java.util.Date;
 @Service
 class JwtServiceImpl implements JwtService {
 
-    @Value("${jwt.config.secret}")
-    private String jwtSecret;
-
     private static final Logger log = LoggerFactory.getLogger(JwtServiceImpl.class);
     private static final Long EXPIRATION_IN_SECONDS = 3600L;
     private static final Long SECOND_IN_MILLIS = 1000L;
+    @Value("${jwt.config.secret}")
+    private String jwtSecret;
 
     @Override
     public String generateToken(final String email) {
