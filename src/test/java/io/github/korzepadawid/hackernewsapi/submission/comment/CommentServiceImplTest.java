@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.comment;
+package io.github.korzepadawid.hackernewsapi.submission.comment;
 
 import io.github.korzepadawid.hackernewsapi.common.domain.Comment;
 import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
@@ -21,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static io.github.korzepadawid.hackernewsapi.testutil.Constants.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -28,10 +29,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CommentServiceImplTest {
-
-    private static final String COMMENT_TEXT = "commenting a submission";
-    private static final String RANDOM_MAIL = "cool@mailer.com";
-    private static final String RANDOM_ID = "jhadfjgsajdfasdf";
 
     @Mock
     private UserService userService;

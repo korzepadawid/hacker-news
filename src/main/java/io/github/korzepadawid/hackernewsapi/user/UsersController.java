@@ -22,16 +22,16 @@ class UsersController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping(path = "/me/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void setAvatarForCurrentUser(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
-                                        final @RequestParam("file") MultipartFile file) {
+    public void setAvatarByEmail(final @CurrentUser @Parameter(hidden = true) UserDetails userDetails,
+                                 final @RequestParam("file") MultipartFile file) {
         userService.setAvatarByEmail(userDetails.getUsername(), file);
     }
 
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/verify/{verificationToken}")
-    public void verifyEmail(@PathVariable final String verificationToken) {
-        userService.verifyUserWithToken(verificationToken);
+    public void verifyUserEmailWithToken(@PathVariable final String verificationToken) {
+        userService.verifyUserEmailWithToken(verificationToken);
     }
 
     @ResponseStatus(HttpStatus.OK)

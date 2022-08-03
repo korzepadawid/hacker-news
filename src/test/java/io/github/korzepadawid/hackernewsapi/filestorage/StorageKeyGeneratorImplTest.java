@@ -8,15 +8,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.MimeTypeUtils;
 
+import static io.github.korzepadawid.hackernewsapi.testutil.Constants.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 @ExtendWith(MockitoExtension.class)
 class StorageKeyGeneratorImplTest {
 
-    private static final String FILENAME = "coolfile";
-    private static final byte[] VALID_FILE_SIZE_BETWEEN_MIN_AND_MAX_IN_BYTES = new byte[(int) (FileServiceImpl.MAX_FILE_SIZE_IN_BYTES - 100L)];
-    private static final String VALID_ORIGINAL_FILE_NAME = "coolfile.png";
 
     @InjectMocks
     private StorageKeyGeneratorImpl storageKeyGenerator;

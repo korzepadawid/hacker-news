@@ -9,7 +9,7 @@ public interface UserService {
 
     User create(User user);
 
-    void verifyUserWithToken(String verificationToken);
+    void verifyUserEmailWithToken(String verificationToken);
 
     UserRead findUserByEmailDto(String email);
 

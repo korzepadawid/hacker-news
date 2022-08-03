@@ -51,7 +51,7 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void verifyUserWithToken(final String verificationToken) {
+    public void verifyUserEmailWithToken(final String verificationToken) {
         final EmailVerificationToken emailVerificationToken = emailVerificationTokenRepository.findByToken(verificationToken)
                 .orElseThrow(() -> new HackerNewsException(HackerNewsError.INVALID_TOKEN));
 
@@ -83,6 +83,7 @@ class UserServiceImpl implements UserService {
         final String storageKey = useExistingStorageKeyOrGenerateNew(multipartFile, user);
         fileService.validate(multipartFile);
         fileStorageService.putFile(storageKey, multipartFile);
+
         if (firstAvatarOf(user)) {
             user.setAvatarStorageKey(storageKey);
             userRepository.save(user);

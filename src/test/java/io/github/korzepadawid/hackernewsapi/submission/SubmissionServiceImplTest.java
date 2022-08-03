@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static io.github.korzepadawid.hackernewsapi.testutil.Constants.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
@@ -28,14 +29,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class SubmissionServiceImplTest {
-
-    private static final int TOTAL = 15;
-    public static final int NEGATIVE_PAGE_NUMBER = -100;
-    public static final int FIRST_PAGE = 1;
-    public static final int SECOND_PAGE = 2;
-    public static final int ZERO = 0;
-    public static final String RANDOM_ID = "id";
-    public static final String DIFFERENT_EMAIL = "differentemail@gmail.com";
 
     @Mock
     private CommentRepository commentRepository;
@@ -51,35 +44,35 @@ class SubmissionServiceImplTest {
 
     @Test
     void shouldReturnPageNumber1WhenNegativeValue() {
-        final Page<Submission> page = new PageImpl<>(getSubmissions(TOTAL));
+        final Page<Submission> page = new PageImpl<>(getSubmissions(TOTAL_SUBMISSIONS));
         when(submissionRepository.findByOrderByCreatedAtDesc(any(PageRequest.class))).thenReturn(page);
 
         final SubmissionPage latestSubmissions = submissionService.findLatestSubmissions(NEGATIVE_PAGE_NUMBER);
 
         assertThat(latestSubmissions.getCurrentPage()).isEqualTo(FIRST_PAGE);
-        assertThat(latestSubmissions.getTotalElements()).isEqualTo(TOTAL);
+        assertThat(latestSubmissions.getTotalElements()).isEqualTo(TOTAL_SUBMISSIONS);
     }
 
     @Test
     void shouldReturnPageNumber1When0() {
-        final Page<Submission> page = new PageImpl<>(getSubmissions(TOTAL));
+        final Page<Submission> page = new PageImpl<>(getSubmissions(TOTAL_SUBMISSIONS));
         when(submissionRepository.findByOrderByCreatedAtDesc(any(PageRequest.class))).thenReturn(page);
 
         final SubmissionPage latestSubmissions = submissionService.findLatestSubmissions(ZERO);
 
         assertThat(latestSubmissions.getCurrentPage()).isEqualTo(FIRST_PAGE);
-        assertThat(latestSubmissions.getTotalElements()).isEqualTo(TOTAL);
+        assertThat(latestSubmissions.getTotalElements()).isEqualTo(TOTAL_SUBMISSIONS);
     }
 
     @Test
     void shouldReturnPageNumber2WhenSecondPageRequested() {
-        final Page<Submission> page = new PageImpl<>(getSubmissions(TOTAL));
+        final Page<Submission> page = new PageImpl<>(getSubmissions(TOTAL_SUBMISSIONS));
         when(submissionRepository.findByOrderByCreatedAtDesc(any(PageRequest.class))).thenReturn(page);
 
         final SubmissionPage latestSubmissions = submissionService.findLatestSubmissions(SECOND_PAGE);
 
         assertThat(latestSubmissions.getCurrentPage()).isEqualTo(SECOND_PAGE);
-        assertThat(latestSubmissions.getTotalElements()).isEqualTo(TOTAL);
+        assertThat(latestSubmissions.getTotalElements()).isEqualTo(TOTAL_SUBMISSIONS);
     }
 
     @Test

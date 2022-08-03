@@ -18,8 +18,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
-import java.util.UUID;
 
+import static io.github.korzepadawid.hackernewsapi.testutil.Constants.RANDOM_SUBMISSION_ID;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,8 +27,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class VoteServiceImplTest {
-
-    private static final String RANDOM_SUBMISSION_ID = UUID.randomUUID().toString();
 
     @Mock
     private UserService userService;
