@@ -1,17 +1,10 @@
 package io.github.korzepadawid.hackernewsapi.testutil;
 
 
-import io.github.korzepadawid.hackernewsapi.filestorage.FileServiceImpl;
-
 import java.util.UUID;
 
 public abstract class Constants {
     public static final String FILENAME = "coolfile";
-    public static final byte[] TOO_BIG_FILE_SIZE_IN_BYTES = new byte[(int) (FileServiceImpl.MAX_FILE_SIZE_IN_BYTES + 1L)];
-    public static final byte[] TOO_SMALL_FILE_SIZE_IN_BYTES = new byte[(int) (FileServiceImpl.MIN_FILE_SIZE_IN_BYTES - 1L)];
-    public static final byte[] VALID_MIN_FILE_SIZE_IN_BYTES = new byte[(int) (FileServiceImpl.MIN_FILE_SIZE_IN_BYTES)];
-    public static final byte[] VALID_MAX_FILE_SIZE_IN_BYTES = new byte[(int) (FileServiceImpl.MAX_FILE_SIZE_IN_BYTES)];
-    public static final byte[] VALID_FILE_SIZE_BETWEEN_MIN_AND_MAX_IN_BYTES = new byte[(int) (FileServiceImpl.MAX_FILE_SIZE_IN_BYTES - 100L)];
     public static final String VALID_ORIGINAL_FILE_NAME = "coolfile.png";
 
     public static final int TOTAL_SUBMISSIONS = 15;

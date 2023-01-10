@@ -31,9 +31,6 @@ public class User {
     @NotNull
     private Boolean verified;
 
-    @Size(max = 60)
-    private String avatarStorageKey;
-
     @NotNull
     private Integer karmaPoints;
 
@@ -79,14 +76,6 @@ public class User {
 
     public void setVerified(final Boolean verified) {
         this.verified = verified;
-    }
-
-    public String getAvatarStorageKey() {
-        return avatarStorageKey;
-    }
-
-    public void setAvatarStorageKey(final String avatarStorageKey) {
-        this.avatarStorageKey = avatarStorageKey;
     }
 
     public Integer getKarmaPoints() {

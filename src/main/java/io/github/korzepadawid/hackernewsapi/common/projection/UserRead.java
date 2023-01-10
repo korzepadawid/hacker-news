@@ -8,7 +8,6 @@ public class UserRead {
     private String username;
     private String email;
     private Boolean verified;
-    private String avatarUrl;
     private Integer karma;
 
     public UserRead() {
@@ -20,7 +19,6 @@ public class UserRead {
         this.email = user.getEmail();
         this.verified = user.getVerified();
         this.karma = user.getKarmaPoints();
-        this.avatarUrl = user.getAvatarStorageKey();
     }
 
     public String getId() {
@@ -53,14 +51,6 @@ public class UserRead {
 
     public void setVerified(final Boolean verified) {
         this.verified = verified;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(final String avatarUrl) {
-        this.avatarUrl = avatarUrl;
     }
 
     public Integer getKarma() {
