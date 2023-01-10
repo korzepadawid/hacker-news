@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.common.domain;
+package io.github.korzepadawid.hackernewsapi.submission.vote;
 
 public enum VoteType {
     UP(1),

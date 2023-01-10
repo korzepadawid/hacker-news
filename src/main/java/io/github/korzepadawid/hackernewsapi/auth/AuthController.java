@@ -1,9 +1,7 @@
 package io.github.korzepadawid.hackernewsapi.auth;
 
-import io.github.korzepadawid.hackernewsapi.common.projection.AuthCredentials;
-import io.github.korzepadawid.hackernewsapi.common.projection.AuthDetails;
-import io.github.korzepadawid.hackernewsapi.common.projection.UserRead;
-import io.github.korzepadawid.hackernewsapi.common.projection.UserWrite;
+import io.github.korzepadawid.hackernewsapi.user.UserRead;
+import io.github.korzepadawid.hackernewsapi.user.UserWrite;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

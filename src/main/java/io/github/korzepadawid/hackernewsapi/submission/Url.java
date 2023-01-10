@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.common.domain;
+package io.github.korzepadawid.hackernewsapi.submission;
 
 import io.github.korzepadawid.hackernewsapi.common.util.UrlUtil;
 import org.hibernate.validator.constraints.URL;

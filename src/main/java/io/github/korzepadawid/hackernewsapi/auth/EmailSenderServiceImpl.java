@@ -1,6 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.auth;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.EmailVerificationToken;
+import io.github.korzepadawid.hackernewsapi.user.EmailVerificationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;

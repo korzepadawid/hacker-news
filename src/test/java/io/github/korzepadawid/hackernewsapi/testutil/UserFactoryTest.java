@@ -1,6 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.testutil;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.user.User;
 
 import java.util.UUID;
 

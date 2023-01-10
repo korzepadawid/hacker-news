@@ -1,6 +1,6 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.submission.vote;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.VoteType;
+import io.github.korzepadawid.hackernewsapi.submission.vote.VoteType;
 
 public class VoteWrite {
 

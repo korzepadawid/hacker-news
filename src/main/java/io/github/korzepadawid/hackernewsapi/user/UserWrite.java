@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.user;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

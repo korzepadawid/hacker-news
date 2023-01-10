@@ -1,9 +1,7 @@
 package io.github.korzepadawid.hackernewsapi.submission;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
-import io.github.korzepadawid.hackernewsapi.common.projection.SubmissionPage;
 import io.github.korzepadawid.hackernewsapi.submission.comment.CommentRepository;
 import io.github.korzepadawid.hackernewsapi.testutil.SubmissionFactoryTest;
 import io.github.korzepadawid.hackernewsapi.testutil.UserFactoryTest;

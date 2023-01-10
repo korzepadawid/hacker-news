@@ -1,7 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.user;
 
 import io.github.korzepadawid.hackernewsapi.auth.CurrentUser;
-import io.github.korzepadawid.hackernewsapi.common.projection.UserRead;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;

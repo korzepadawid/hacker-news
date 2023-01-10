@@ -1,6 +1,6 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.user;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.user.User;
 
 public class UserRead {
 

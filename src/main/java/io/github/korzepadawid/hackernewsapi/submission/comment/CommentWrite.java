@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.submission.comment;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

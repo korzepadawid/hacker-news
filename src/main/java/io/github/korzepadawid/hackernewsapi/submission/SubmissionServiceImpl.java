@@ -1,11 +1,9 @@
 package io.github.korzepadawid.hackernewsapi.submission;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
-import io.github.korzepadawid.hackernewsapi.common.domain.Url;
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.submission.comment.CommentRead;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsError;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
-import io.github.korzepadawid.hackernewsapi.common.projection.*;
 import io.github.korzepadawid.hackernewsapi.submission.comment.CommentRepository;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
 import org.springframework.data.domain.Page;

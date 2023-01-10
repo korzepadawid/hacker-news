@@ -1,6 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.testutil;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Comment;
+import io.github.korzepadawid.hackernewsapi.submission.comment.Comment;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

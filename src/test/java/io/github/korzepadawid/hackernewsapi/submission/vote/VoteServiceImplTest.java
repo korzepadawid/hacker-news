@@ -1,11 +1,8 @@
 package io.github.korzepadawid.hackernewsapi.submission.vote;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
-import io.github.korzepadawid.hackernewsapi.common.domain.Vote;
-import io.github.korzepadawid.hackernewsapi.common.domain.VoteType;
+import io.github.korzepadawid.hackernewsapi.submission.Submission;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
-import io.github.korzepadawid.hackernewsapi.common.projection.VoteWrite;
 import io.github.korzepadawid.hackernewsapi.submission.SubmissionService;
 import io.github.korzepadawid.hackernewsapi.testutil.SubmissionFactoryTest;
 import io.github.korzepadawid.hackernewsapi.testutil.UserFactoryTest;

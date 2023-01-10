@@ -1,11 +1,9 @@
 package io.github.korzepadawid.hackernewsapi.auth;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.EmailVerificationToken;
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
-import io.github.korzepadawid.hackernewsapi.common.projection.AuthCredentials;
-import io.github.korzepadawid.hackernewsapi.common.projection.AuthDetails;
-import io.github.korzepadawid.hackernewsapi.common.projection.UserRead;
-import io.github.korzepadawid.hackernewsapi.common.projection.UserWrite;
+import io.github.korzepadawid.hackernewsapi.user.EmailVerificationToken;
+import io.github.korzepadawid.hackernewsapi.user.User;
+import io.github.korzepadawid.hackernewsapi.user.UserRead;
+import io.github.korzepadawid.hackernewsapi.user.UserWrite;
 import io.github.korzepadawid.hackernewsapi.user.EmailVerificationTokenService;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
 import org.slf4j.Logger;

@@ -1,5 +1,7 @@
-package io.github.korzepadawid.hackernewsapi.common.domain;
+package io.github.korzepadawid.hackernewsapi.submission.vote;
 
+import io.github.korzepadawid.hackernewsapi.submission.Submission;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;

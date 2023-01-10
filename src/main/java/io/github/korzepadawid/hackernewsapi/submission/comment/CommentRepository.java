@@ -1,7 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.submission.comment;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Comment;
-import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
+import io.github.korzepadawid.hackernewsapi.submission.Submission;
 
 import java.util.List;
 import java.util.Optional;

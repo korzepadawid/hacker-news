@@ -1,4 +1,6 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.submission;
+
+import io.github.korzepadawid.hackernewsapi.submission.comment.CommentRead;
 
 import java.util.List;
 

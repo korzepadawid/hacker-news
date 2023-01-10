@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.auth;
 
 public class AuthDetails {
 

@@ -1,8 +1,8 @@
 package io.github.korzepadawid.hackernewsapi.testutil;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
-import io.github.korzepadawid.hackernewsapi.common.domain.Url;
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.submission.Submission;
+import io.github.korzepadawid.hackernewsapi.submission.Url;
+import io.github.korzepadawid.hackernewsapi.user.User;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

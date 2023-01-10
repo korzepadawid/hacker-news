@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.common.domain;
+package io.github.korzepadawid.hackernewsapi.user;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,11 +1,8 @@
 package io.github.korzepadawid.hackernewsapi.submission.comment;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Comment;
-import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.submission.Submission;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
-import io.github.korzepadawid.hackernewsapi.common.projection.CommentRead;
-import io.github.korzepadawid.hackernewsapi.common.projection.CommentWrite;
 import io.github.korzepadawid.hackernewsapi.submission.SubmissionService;
 import io.github.korzepadawid.hackernewsapi.testutil.CommentFactoryTest;
 import io.github.korzepadawid.hackernewsapi.testutil.SubmissionFactoryTest;

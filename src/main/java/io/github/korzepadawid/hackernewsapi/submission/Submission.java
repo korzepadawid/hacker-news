@@ -1,5 +1,8 @@
-package io.github.korzepadawid.hackernewsapi.common.domain;
+package io.github.korzepadawid.hackernewsapi.submission;
 
+import io.github.korzepadawid.hackernewsapi.submission.comment.Comment;
+import io.github.korzepadawid.hackernewsapi.submission.vote.Vote;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;

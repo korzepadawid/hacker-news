@@ -1,6 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.auth;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.user.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

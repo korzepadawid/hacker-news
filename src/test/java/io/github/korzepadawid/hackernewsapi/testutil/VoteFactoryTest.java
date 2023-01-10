@@ -1,9 +1,9 @@
 package io.github.korzepadawid.hackernewsapi.testutil;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Submission;
-import io.github.korzepadawid.hackernewsapi.common.domain.User;
-import io.github.korzepadawid.hackernewsapi.common.domain.Vote;
-import io.github.korzepadawid.hackernewsapi.common.domain.VoteType;
+import io.github.korzepadawid.hackernewsapi.submission.Submission;
+import io.github.korzepadawid.hackernewsapi.user.User;
+import io.github.korzepadawid.hackernewsapi.submission.vote.Vote;
+import io.github.korzepadawid.hackernewsapi.submission.vote.VoteType;
 
 import java.util.UUID;
 

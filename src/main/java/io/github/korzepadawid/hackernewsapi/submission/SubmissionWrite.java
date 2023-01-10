@@ -1,4 +1,4 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.submission;
 
 import org.hibernate.validator.constraints.URL;
 

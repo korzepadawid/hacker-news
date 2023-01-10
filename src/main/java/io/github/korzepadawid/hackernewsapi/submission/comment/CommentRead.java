@@ -1,6 +1,6 @@
-package io.github.korzepadawid.hackernewsapi.common.projection;
+package io.github.korzepadawid.hackernewsapi.submission.comment;
 
-import io.github.korzepadawid.hackernewsapi.common.domain.Comment;
+import io.github.korzepadawid.hackernewsapi.user.UserRead;
 
 import java.time.LocalDateTime;
 
