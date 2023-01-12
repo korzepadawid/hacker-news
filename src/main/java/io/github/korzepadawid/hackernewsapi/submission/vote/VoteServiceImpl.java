@@ -1,10 +1,10 @@
 package io.github.korzepadawid.hackernewsapi.submission.vote;
 
-import io.github.korzepadawid.hackernewsapi.submission.Submission;
-import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsError;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
+import io.github.korzepadawid.hackernewsapi.submission.Submission;
 import io.github.korzepadawid.hackernewsapi.submission.SubmissionService;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
 import org.springframework.stereotype.Service;
 

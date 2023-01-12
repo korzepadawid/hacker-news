@@ -1,11 +1,6 @@
 package io.github.korzepadawid.hackernewsapi.auth;
 
-import io.github.korzepadawid.hackernewsapi.user.EmailVerificationToken;
-import io.github.korzepadawid.hackernewsapi.user.User;
-import io.github.korzepadawid.hackernewsapi.user.UserRead;
-import io.github.korzepadawid.hackernewsapi.user.UserWrite;
-import io.github.korzepadawid.hackernewsapi.user.EmailVerificationTokenService;
-import io.github.korzepadawid.hackernewsapi.user.UserService;
+import io.github.korzepadawid.hackernewsapi.user.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;

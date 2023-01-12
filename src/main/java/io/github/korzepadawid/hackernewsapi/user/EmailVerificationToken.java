@@ -1,6 +1,5 @@
 package io.github.korzepadawid.hackernewsapi.user;
 
-import io.github.korzepadawid.hackernewsapi.user.User;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;

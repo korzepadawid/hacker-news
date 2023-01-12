@@ -1,7 +1,5 @@
 package io.github.korzepadawid.hackernewsapi.submission.vote;
 
-import io.github.korzepadawid.hackernewsapi.submission.vote.VoteType;
-
 public class VoteWrite {
 
     private VoteType voteType;

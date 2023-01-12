@@ -1,10 +1,10 @@
 package io.github.korzepadawid.hackernewsapi.submission;
 
-import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.common.exception.HackerNewsException;
 import io.github.korzepadawid.hackernewsapi.submission.comment.CommentRepository;
 import io.github.korzepadawid.hackernewsapi.testutil.SubmissionFactoryTest;
 import io.github.korzepadawid.hackernewsapi.testutil.UserFactoryTest;
+import io.github.korzepadawid.hackernewsapi.user.User;
 import io.github.korzepadawid.hackernewsapi.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -17,7 +17,7 @@ class UsersController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/verify/{verificationToken}")
+    @GetMapping("/verify/{verificationToken}")
     public void verifyUserEmailWithToken(@PathVariable final String verificationToken) {
         userService.verifyUserEmailWithToken(verificationToken);
     }
